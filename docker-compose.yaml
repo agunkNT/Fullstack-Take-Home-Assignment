@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: indico-postgres
+    environment:
+      POSTGRES_USER: indico_user
+      POSTGRES_PASSWORD: indico_password
+      POSTGRES_DB: indico_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U indico_user -d indico_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
