@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Package, RefreshCw, ShoppingCart, CheckCircle, AlertCircle, History } from 'lucide-react'
 import './index.css'
 
-const API_BASE = 'http://localhost:8080/api/v1'
+const API_BASE = import.meta.env.VITE_API_BASE || '/api/v1'
 const ITEMS = ['item_4021', 'item_8888', 'item_9999']
 
 function App() {
