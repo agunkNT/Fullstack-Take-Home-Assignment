@@ -27,15 +27,28 @@ To run this project on your local machine, ensure you have the following install
 
 ## 📦 How to Run the Project
 
-### 1. Start the Database
-The PostgreSQL database runs in a Docker container and is automatically initialized.
+### Option A: Run Entire Stack with Docker (Recommended)
+You can run the entire system (PostgreSQL database, Go backend, and React frontend) with a single command:
 ```bash
-# In the root directory of the project
-docker compose up -d
+docker compose up --build
 ```
-> **Note:** The database handles its own initial seeding of products (`item_4021`, `item_8888`, `item_9999`) upon the first backend connection.
 
-### 2. Start the Backend (Go)
+Once running:
+- **Frontend Dashboard**: [http://localhost:5173](http://localhost:5173)
+- **Backend API**: [http://localhost:8080/api/v1](http://localhost:8080/api/v1)
+- **PostgreSQL Database**: `localhost:5433` (User: `indico_user`, DB: `indico_db`)
+
+---
+
+### Option B: Run Services Locally (Development Mode)
+
+#### 1. Start the Database
+```bash
+docker compose up -d db
+```
+> **Note:** The database automatically seeds products (`item_4021`, `item_8888`, `item_9999`) upon the first backend connection.
+
+#### 2. Start the Backend (Go)
 ```bash
 cd backend
 go mod tidy
@@ -43,14 +56,13 @@ go run main.go
 ```
 The Go server will start on **http://localhost:8080**.
 
-### 3. Start the Frontend (React)
-Open a new terminal window:
+#### 3. Start the Frontend (React)
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-The React frontend will be accessible at **http://localhost:5173** (or 5174).
+The React frontend will be accessible at **http://localhost:5173**.
 
 ---
 

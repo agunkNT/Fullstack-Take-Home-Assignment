@@ -4,9 +4,10 @@
 This project implements a high-throughput, concurrent-safe inventory reservation system. The architecture is designed to handle multiple concurrent users attempting to reserve a limited stock of items, ensuring data integrity, preventing overselling, and managing graceful expiries.
 
 ## 2. Technology Stack
-- **Frontend**: React.js with Vite (Lightning fast HMR and optimized build).
-- **Backend Framework**: Go (Golang) using the Gin HTTP framework for high-performance routing.
-- **Database**: PostgreSQL 15, managed via Docker Compose.
+- **Frontend**: React.js with Vite, packaged and served via high-performance Nginx in Docker.
+- **Backend Framework**: Go (Golang) using the Gin HTTP framework, built with multi-stage Alpine Docker container.
+- **Database**: PostgreSQL 15, managed via Docker Compose with healthcheck probes.
+- **Container Orchestration**: Docker Compose coordinating PostgreSQL, Go Backend, and React Frontend in a single isolated network.
 - **ORM**: Gorm (Go Object Relational Mapper) for schema migration and query generation.
 
 ## 3. Core Mechanisms
